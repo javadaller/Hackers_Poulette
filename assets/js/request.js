@@ -1,7 +1,7 @@
 import { escapeHTML } from "./fnc.js";
 
 export async function sendForm() {
-    console.log('ok');
+    
     const inputName = document.querySelector('#nameID');
     const surname = document.querySelector('#surnameID');
     const gender = document.querySelector('#genderID');
