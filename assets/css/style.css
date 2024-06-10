@@ -380,50 +380,114 @@ template {
   font-family: "Bellota";
   src: url("../fonts/Bellota-Regular.otf") format("truetype");
 }
+.error {
+  border: solid 1px red;
+}
+
 footer {
   width: 100%;
   height: 10vh;
-  background-color: var(--color1);
+  background-color: var(--color2);
+  padding: 0px 5% 0px 5%;
+}
+footer #socials {
+  width: 20%;
+}
+footer #socials img {
+  height: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+footer #socials img:hover {
+  transform: scale(110%);
+}
+footer p {
+  color: white;
 }
 
 main {
   width: 100%;
   height: 100%;
 }
+main form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  border-radius: 30px;
+  margin: 50px 0px 50px 0px;
+  padding: 25px;
+  box-shadow: 0px 0px 15px 5px rgba(13, 129, 135, 0.19);
+}
+main form label {
+  align-items: flex-start;
+  margin-top: 15px;
+  color: var(--color3);
+}
+main form input, main form select {
+  width: 100%;
+  margin-top: 5px;
+}
+main form select {
+  width: 30%;
+}
+main form #messageID {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 20px;
+}
+main form .displayError {
+  color: rgb(148, 0, 0);
+}
+main form #sendButton {
+  margin-top: 15px;
+  align-self: center;
+  border: solid 1px var(--color3);
+  border-radius: 30px;
+  padding: 2px 7px 2px 7px;
+  box-shadow: 0px 0px 5px 2px rgba(13, 129, 135, 0.19);
+  cursor: pointer;
+  transition: 0.3s;
+}
+main form #sendButton:hover {
+  color: var(--color3);
+  transform: scale(110%);
+  box-shadow: 0px 0px 10px 5px rgba(13, 129, 135, 0.19);
+}
 
-.flexCenter {
+.flexCenterCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.flexCenterAround {
+.flexAroundCenter {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexCenterBetween, footer {
+.flexBetweenCenter, footer, footer #socials, main form input, main form select, header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.flexCenterColumn, main, header {
+.flexColumnCenterCenter, main, header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.flexCenterColumnAround {
+.flexColumnAroundCenter {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexCenterColumnBetween {
+.flexColumnBetweenCenter {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -439,15 +503,32 @@ main {
 
 header {
   width: 100%;
-  height: 35vh;
+  height: 40vh;
 }
-header form {
+header nav {
   width: 100%;
   height: 100%;
-  margin: 5%;
+  padding: 0px 10% 0px 10%;
+}
+header img {
+  height: 90%;
 }
 
 body {
   color: var(--text);
   font-family: Bellota;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color2);
+  border-radius: 20px;
+  border: solid 7px var(--Background);
 }/*# sourceMappingURL=style.css.map */

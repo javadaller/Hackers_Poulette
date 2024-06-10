@@ -1,11 +1,16 @@
 @use "../extends/_extends_dir";
 
 header {
-    @extend .flexCenterColumn;
-    @include box(100%,35vh);
+    @extend .flexColumnCenterCenter;
+    @include box(100%,40vh);
 
-    form {
+    nav {
         @include box(100%);
-        margin:5%;
+        @extend .flexBetweenCenter;
+        padding:0px 10% 0px 10%;
+    }
+
+    img {
+        height:90%;
     }
 }

@@ -1,36 +1,36 @@
-.flexCenter {
+.flexCenterCenter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.flexCenterAround {
+.flexAroundCenter {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.flexCenterBetween {
+.flexBetweenCenter {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.flexCenterColumn {
+.flexColumnCenterCenter {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.flexCenterColumnAround {
+.flexColumnAroundCenter {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
-.flexCenterColumnBetween {
+.flexColumnBetweenCenter {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

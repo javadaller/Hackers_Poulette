@@ -1,5 +1,24 @@
 footer {
-    @extend .flexCenterBetween;
+    @extend .flexBetweenCenter;
     @include box(100%,10vh);
-    background-color: var(--color1);
+    background-color: var(--color2);
+    padding:0px 5% 0px 5%;
+
+    #socials {
+        @extend .flexBetweenCenter;
+        width:20%;
+
+        img {
+            height:25px;
+            cursor:pointer;
+            transition: 0.3s;
+        }
+        img:hover {
+            transform: scale(110%);
+        }
+    }
+
+    p {
+        color:white;
+    }
 }
