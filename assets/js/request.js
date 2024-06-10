@@ -48,7 +48,7 @@ export async function sendForm() {
     };
 
     try {
-        const response = await fetch('assets/php/postMessage.php', {
+        const response = await fetch('https://arnaudweb.be/Hackers_Poulettes/assets/php/postMessage.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

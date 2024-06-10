@@ -1,73 +1,44 @@
 <?php
-header('Content-Type: application/json');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
-// Activer le rapport des erreurs pour le débogage (à enlever en production)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// Activer les erreurs de PHP
 error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require '/home/arnaudf/www/Hackers_Poulettes/assets/php/mailer/src/Exception.php';
+require '/home/arnaudf/www/Hackers_Poulettes/assets/php/mailer/src/PHPMailer.php';
+require '/home/arnaudf/www/Hackers_Poulettes/assets/php/mailer/src/SMTP.php';
+
+$mail = new PHPMailer(true);
 
 try {
-    // Récupérer les données JSON du corps de la requête
-    $input = file_get_contents('php://input');
-    $data = json_decode($input, true);
+    // Paramètres du serveur
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Activer la sortie de débogage verbose
+    $mail->isSMTP();                        // Envoyer via SMTP
+    $mail->Host = 'ssl0.ovh.net';         // Définir le serveur SMTP pour envoyer via Gmail
+    $mail->SMTPAuth = true;                 // Activer l'authentification SMTP
+    $mail->Username = 'becode@arnaudweb.be'; // Votre nom d'utilisateur Gmail
+    $mail->Password = 'becode6220';   // Votre mot de passe Gmail ou mot de passe d'application
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Activer le chiffrement TLS
+    $mail->Port = 465;                      // Port TCP à utiliser
 
-    if ($data && isset($data['email'])) {
-        // Validation et sanitation des données
-        $name = htmlspecialchars($data['name']);
-        $surname = htmlspecialchars($data['surname']);
-        $gender = htmlspecialchars($data['gender']);
-        $email = htmlspecialchars($data['email']);
-        $country = htmlspecialchars($data['country']);
-        $subject = htmlspecialchars($data['subject']);
-        $message = htmlspecialchars($data['message']);
+    // Destinataires
+    $mail->setFrom('becode@arnaudweb.be', 'Becode'); // Adresse de l'expéditeur
+    $mail->addAddress('arnaudvanacker@yahoo.fr', 'Arnaud'); // Ajouter un destinataire
 
-        // Vérification de l'email valide
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception('Invalid email address.');
-        }
+    // Contenu
+    $mail->isHTML(true);                    // Définir le format de l'e-mail à HTML
+    $mail->Subject = 'Voici le sujet';
+    $mail->Body    = 'Ceci est le corps du message en HTML <b>en gras !</b>';
+    $mail->AltBody = 'Ceci est le corps en texte brut pour les clients de messagerie non-HTML';
 
-        // Configuration de l'email
-        $to = $email;
-        $subjectEmail = 'Confirmation de réception de votre message';
-        $headers = "From: no-reply@votre-site.com\r\n";
-        $headers .= "Reply-To: no-reply@votre-site.com\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-        // Contenu de l'email
-        $messageEmail = "
-        <html>
-        <head>
-        <title>Confirmation de réception</title>
-        </head>
-        <body>
-        <h2>Bonjour $name,</h2>
-        <p>Nous avons bien reçu votre message avec les informations suivantes :</p>
-        <ul>
-            <li><strong>Prénom :</strong> $name</li>
-            <li><strong>Nom :</strong> $surname</li>
-            <li><strong>Genre :</strong> $gender</li>
-            <li><strong>Email :</strong> $email</li>
-            <li><strong>Pays :</strong> $country</li>
-            <li><strong>Sujet :</strong> $subject</li>
-            <li><strong>Message :</strong> $message</li>
-        </ul>
-        <p>Nous vous contacterons bientôt.</p>
-        <p>Cordialement,<br>L'équipe de votre site</p>
-        </body>
-        </html>";
-
-        // Envoi de l'email
-        $mailSent = mail($to, $subjectEmail, $messageEmail, $headers);
-
-        if ($mailSent) {
-            echo json_encode(['status' => 'success', 'message' => 'Data received and email sent']);
-        } else {
-            throw new Exception('Email not sent.');
-        }
-    } else {
-        throw new Exception('No data received or email missing.');
-    }
+    $mail->send();
+    echo 'Le message a été envoyé';
 } catch (Exception $e) {
-    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+    // Enregistrez l'erreur dans un fichier de logs
+    error_log("Erreur lors de l'envoi du message : " . $mail->ErrorInfo);
+    echo "Le message n'a pas pu être envoyé. Erreur du Mailer : {$mail->ErrorInfo}";
 }
 ?>
