@@ -1,0 +1,11 @@
+@use "../extends/_extends_dir";
+
+header {
+    @extend .flexCenterColumn;
+    @include box(100%,35vh);
+
+    form {
+        @include box(100%);
+        margin:5%;
+    }
+}

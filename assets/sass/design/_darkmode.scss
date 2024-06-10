@@ -1,0 +1,9 @@
+.svgToWhite{
+    color:#000;
+    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(355deg) brightness(101%) contrast(101%);
+}
+
+.svgToBlack {
+    color:#fff;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(207deg) brightness(106%) contrast(102%);
+}

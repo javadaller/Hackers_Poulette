@@ -1,0 +1,5 @@
+footer {
+    @extend .flexCenterBetween;
+    @include box(100%,10vh);
+    background-color: var(--color1);
+}

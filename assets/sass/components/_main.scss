@@ -1,0 +1,4 @@
+main {
+    @extend .flexCenterColumn;
+    @include box(100%);
+}
