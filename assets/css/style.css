@@ -419,6 +419,11 @@ main form {
   padding: 25px;
   box-shadow: 0px 0px 15px 5px rgba(13, 129, 135, 0.19);
 }
+@media only screen and (min-width: 700px) {
+  main form {
+    width: 600px;
+  }
+}
 main form label {
   align-items: flex-start;
   margin-top: 15px;
@@ -461,13 +466,13 @@ main form #sendButton:hover {
   align-items: center;
 }
 
-.flexAroundCenter {
+.flexAroundCenter, header nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.flexBetweenCenter, footer, footer #socials, main form input, main form select, header nav {
+.flexBetweenCenter, footer, footer #socials, main form input, main form select {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -511,7 +516,10 @@ header nav {
   padding: 0px 10% 0px 10%;
 }
 header img {
-  height: 90%;
+  z-index: -1;
+  height: 150%;
+  margin-bottom: -100px;
+  margin-top: -80px;
 }
 
 body {
@@ -520,7 +528,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {

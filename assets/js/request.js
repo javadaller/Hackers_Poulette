@@ -1,4 +1,4 @@
-import { escapeHTML } from "./fnc.js";
+import { escapeHTML, isValidEmail } from "./fnc.js";
 
 export async function sendForm() {
     
@@ -14,6 +14,7 @@ export async function sendForm() {
 
     form.forEach(element => {
         element.classList.remove('error');
+        element.value = ''
         element.nextElementSibling.innerHTML = '';
     });
 
@@ -26,7 +27,7 @@ export async function sendForm() {
     } else if (gender.value == 'none') {
         error(gender, 'Please choose your gender');
         return;
-    } else if (email.value.length == 0) {
+    } else if (email.value.length == 0 || !isValidEmail(email.value)) {
         error(email, 'Please enter a valid e-mail');
         return;
     } else if (country.value.length == 0) {

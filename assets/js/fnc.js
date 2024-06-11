@@ -1,3 +1,13 @@
+// VALID EMAIL
+export function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const input = document.createElement('input');
+  input.type = 'email';
+  input.value = email;
+  return re.test(email) && input.checkValidity();
+}
+
+//------------------------------------------------------------------------------------------
 // CREATE DIV
 export function createDiv(type,parent,content,className) {
   const newDiv=document.createElement(type);
