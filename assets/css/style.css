@@ -395,6 +395,7 @@ footer #socials {
 }
 footer #socials img {
   height: 25px;
+  filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(154deg) brightness(106%) contrast(101%);
   cursor: pointer;
   transition: 0.3s;
 }
